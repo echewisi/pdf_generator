@@ -1,0 +1,46 @@
+{
+    "company_name": "Denver&co limited",
+    "company_address": "1234 Mushin\nIkoyi, Lagos, 60054",
+    "customer_name": "John Doe",
+    "customer_address": "5678 Another St\nPort harcourt, Rivers state, 50001",
+    "account_name": "John Doe Savings",
+    "account_number": "1234567890",
+    "report_generation_date": "4 January 2024",
+    "balance_summary": [ {
+        "product": "account(current account)",
+        "opening_balance": 1000.00,
+        "money_in": 500.00,
+        "money_out": 100.00,
+        "closing_balance": 1500.00
+    }, 
+    {
+        "product": "total",
+        "opening_balance": 1000.00,
+        "money_in": 500.00,
+        "money_out": 100.00,
+        "closing_balance": 1500.00
+    }
+    ],
+    "transactions": [{
+            "date": "2024-01-01",
+            "description": "Deposit: top up via bank using USSD",
+            "money_out": "",
+            "money_in": 1500.00,
+            "balance": 1500.00
+        },
+        {
+            "date": "2024-01-02",
+            "description": "Withdrawal for machine intensive care",
+            "money_out": 100.00,
+            "money_in": "",
+            "balance": 1400.00
+        },
+        {
+            "date": "2024-01-03",
+            "description": "added payment for customer orders",
+            "money_out": "",
+            "money_in": 500.00,
+            "balance": 1900.00
+        }
+    ]
+}
