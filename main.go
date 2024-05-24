@@ -61,16 +61,12 @@ func openPDF(filename string) {
     }
 }
 
-// func calculateMoneyInOut(transactions []Transaction) (moneyIn float64, moneyOut float64) {
-//     for _, t := range transactions {
-//         if t.Amount > 0 {
-//             moneyIn += t.Amount
-//         } else {
-//             moneyOut += -t.Amount
-//         }
-//     }
-//     return
-// }
+func formatCurrency(value interface{}) string {
+    if value == "" {
+        return ""
+    }
+    return fmt.Sprintf("$%.2f", value)
+}
 
 func main() {
     // Read the JSON file
@@ -145,10 +141,10 @@ func main() {
 	for _, details := range accountStatement.BalanceSummary {
 		pdf.SetFont("Arial", "", 8)
 		pdf.CellFormat(40, 10, details.Product, "1", 0, "", false, 0, "")
-		pdf.CellFormat(40, 10, fmt.Sprintf("%.2f",  details.OpeningBalance), "1", 0, "R", false, 0, " ")
-		pdf.CellFormat(40, 10, fmt.Sprintf("%.2f",  details.MoneyOut), "1", 0, "R", false, 0, " ")
-		pdf.CellFormat(40, 10, fmt.Sprintf("%.2f",  details.MoneyIn), "1", 0, "R", false, 0, " ")
-		pdf.CellFormat(40, 10, fmt.Sprintf("%.2f",  details.ClosingBalance), "1", 0, "R", false, 0, " ")
+		pdf.CellFormat(40, 10, formatCurrency(details.OpeningBalance), "1", 0, "R", false, 0, " ")
+		pdf.CellFormat(40, 10, formatCurrency(details.MoneyOut), "1", 0, "R", false, 0, " ")
+		pdf.CellFormat(40, 10, formatCurrency(details.MoneyIn), "1", 0, "R", false, 0, " ")
+		pdf.CellFormat(40, 10, formatCurrency(details.ClosingBalance), "1", 0, "R", false, 0, " ")
 		pdf.Ln(10)
 	}
 
@@ -172,9 +168,9 @@ func main() {
 		pdf.SetFont("Arial", "", 8)
         pdf.CellFormat(40, 10, t.Date, "1", 0, "", false, 0, "")
         pdf.CellFormat(70, 10, t.Description, "1", 0, "", false, 0, "")
-        pdf.CellFormat(30, 10, fmt.Sprintf("%.2f", t.MoneyOut), "1", 0, "R", false, 0, "")
-        pdf.CellFormat(30, 10, fmt.Sprintf("%.2f", t.MoneyIn), "1", 0, "R", false, 0, "")
-        pdf.CellFormat(30, 10, fmt.Sprintf("%.2f", t.Balance), "1", 0, "R", false, 0, "")
+        pdf.CellFormat(30, 10, formatCurrency(t.MoneyOut), "1", 0, "R", false, 0, "")
+        pdf.CellFormat(30, 10, formatCurrency(t.MoneyIn), "1", 0, "R", false, 0, "")
+        pdf.CellFormat(30, 10, formatCurrency(t.Balance), "1", 0, "R", false, 0, "")
         pdf.Ln(10)
     }
 
